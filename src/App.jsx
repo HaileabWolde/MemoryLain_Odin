@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import Card from './components/Card';
-
+import AudioPlayerComponent from './components/Audio';
 function App() {
   const [characters, setCharacters] = useState([]);
   const [vistedCharacter, setVistedCharacter] = useState([]);
@@ -81,13 +81,19 @@ const [bestScore, setBestScore] = useState(0)
 
   return (
    <div className='Container'>
-      <div className='scoreBoard'>
-          <div className='yourBoard'>
-              <p>Your Score:  {yourscore}</p>
-          </div>
-          <div className='bestBoard'>
-              <p>Best Score: {bestScore}</p>
-          </div>
+      <div className='Board'>
+           <AudioPlayerComponent
+       src="./audio/GOT.mp3"
+       />
+          <div className="scores-container">  {/* New wrapper */}
+                <div className='yourBoard'>
+                      <p>Your Score: {yourscore}</p>
+                </div>
+               <div className='bestBoard'>
+                    <p>Best Score: {bestScore}</p>
+               </div>
+           </div>
+      
       </div>
       <div className='allCharacters'>
            {
@@ -104,7 +110,7 @@ const [bestScore, setBestScore] = useState(0)
           })
          }
        </div>
- 
+      
    </div>
   )
 
