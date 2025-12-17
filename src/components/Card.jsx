@@ -1,8 +1,12 @@
 import './Card.css'
-const Card = ()=> {
+const Card = ({id, imageName, imageUrl})=> {
     return(
             <div className="card">
-              <h1>Hello</h1>
+             <img
+             src={imageUrl}
+             alt={imageName}
+              style={{ width: '200px', height: 'auto' }}
+             />
             </div>
     )
 

@@ -49,7 +49,12 @@ function App() {
     characters.slice(0, 20).map((character)=> {
       console.log(character)
       return (
-       <Card/>
+       <Card
+       id={character.id}
+       key={character.id}
+       image = {character.image}
+       imageUrl = {character.imageUrl}
+       />
       )
     })
   }
