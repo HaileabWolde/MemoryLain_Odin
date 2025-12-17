@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import './App.css'
+import Card from './components/Card';
 
 function App() {
   const [characters, setCharacters] = useState([]);
+  const [vistedCharacter, setVistedCharacter] = useState([]);
  const [error, setError] = useState(null)
   const [isLoading, setLoading] = useState(true);
  
@@ -29,7 +31,7 @@ function App() {
      
     }
     getGameofThronesAPI()
-  }, [])
+  }, [vistedCharacter])
 
 
   if (isLoading) {
@@ -42,9 +44,16 @@ function App() {
   }
 
   return (
-   <>
-  <h1>Hello MotherFucker</h1>
-   </>
+   <div className='Container'>
+  {
+    characters.slice(0, 20).map((character)=> {
+      console.log(character)
+      return (
+       <Card/>
+      )
+    })
+  }
+   </div>
   )
 
 }
