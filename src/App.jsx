@@ -39,7 +39,10 @@ const [bestScore, setBestScore] = useState(0)
   const checkcharacter = (id)=> {
     if(vistedCharacter.length > 0){
       if(vistedCharacter.find(character=> character.id === id)){
-        console.log('You Have found it')
+        alert('Game over')
+        setVistedCharacter([])
+        setBestScore(prev => yourscore > prev ? yourscore : prev)
+        setScore(0);
         return true;
       }
     
@@ -52,6 +55,8 @@ const [bestScore, setBestScore] = useState(0)
         let findChar = characters.find((item)=> item.id === id)
             setVistedCharacter(prev=> [
         ...prev, findChar])
+        setScore(prev => prev + 1)
+       
     }
        
     const shuffledArr = [...characters]
