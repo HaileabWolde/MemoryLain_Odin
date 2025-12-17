@@ -31,7 +31,18 @@ function App() {
      
     }
     getGameofThronesAPI()
-  }, [vistedCharacter])
+  }, [])
+
+  const shuffleArray = ()=> {
+    const shuffledArr = [...characters]
+   for (let i = shuffledArr.length - 1; i > 0; i--) {
+    // Pick a random index from 0 to i inclusive
+    const j = Math.floor(Math.random() * (i + 1)); 
+    // Swap elements array[i] and array[j] using destructuring assignment
+    [shuffledArr[i], shuffledArr[j]] = [shuffledArr[j], shuffledArr[i]];
+  }
+  setCharacters(shuffledArr)
+  }
 
 
   if (isLoading) {
@@ -46,14 +57,15 @@ function App() {
   return (
    <div className='Container'>
   {
-    characters.slice(0, 20).map((character)=> {
-      console.log(character)
+    characters.slice(0, 6).map((character)=> {
+   
       return (
        <Card
        id={character.id}
        key={character.id}
        image = {character.image}
        imageUrl = {character.imageUrl}
+       shuffleArray= {shuffleArray}
        />
       )
     })

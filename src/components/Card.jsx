@@ -1,14 +1,25 @@
-import './Card.css'
-const Card = ({id, imageName, imageUrl})=> {
-    return(
-            <div className="card">
-             <img
-             src={imageUrl}
-             alt={imageName}
-              style={{ width: '200px', height: 'auto' }}
-             />
-            </div>
-    )
+import './Card.css';
 
-}
-export default Card
+const Card = ({ 
+    id, 
+    imageName, 
+    imageUrl,
+    shuffleArray
+ }) => {
+    return (
+        <div 
+            className="card" 
+            style={{
+                backgroundImage: `url(${imageUrl})`,
+                alt: {imageName},
+                backgroundSize: 'cover',
+                backgroundPosition: 'center'
+            }}
+            onClick={shuffleArray}
+        >
+        
+        </div>
+    );
+};
+
+export default Card;
