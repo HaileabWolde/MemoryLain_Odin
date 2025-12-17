@@ -6,7 +6,9 @@ function App() {
   const [characters, setCharacters] = useState([]);
   const [vistedCharacter, setVistedCharacter] = useState([]);
  const [error, setError] = useState(null)
-  const [isLoading, setLoading] = useState(true);
+const [isLoading, setLoading] = useState(true);
+const [yourscore, setScore] = useState(0)
+const [bestScore, setBestScore] = useState(0)
  
  
   
@@ -74,7 +76,14 @@ function App() {
 
   return (
    <div className='Container'>
-    <h1>Hello</h1>
+      <div className='scoreBoard'>
+          <div className='yourBoard'>
+              <p>Your Score:  {yourscore}</p>
+          </div>
+          <div className='bestBoard'>
+              <p>Best Score: {bestScore}</p>
+          </div>
+      </div>
       <div className='allCharacters'>
            {
          characters.slice(0, 6).map((character)=> {
