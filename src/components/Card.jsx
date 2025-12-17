@@ -6,6 +6,7 @@ const Card = ({
     imageUrl,
     shuffleArray
  }) => {
+    
     return (
         <div 
             className="card" 
@@ -15,7 +16,7 @@ const Card = ({
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
             }}
-            onClick={shuffleArray}
+            onClick={()=> shuffleArray(id)}
         >
         
         </div>

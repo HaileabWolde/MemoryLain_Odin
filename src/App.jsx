@@ -8,6 +8,7 @@ function App() {
  const [error, setError] = useState(null)
   const [isLoading, setLoading] = useState(true);
  
+ 
   
   useEffect(()=>{
     async function getGameofThronesAPI(){
@@ -33,7 +34,24 @@ function App() {
     getGameofThronesAPI()
   }, [])
 
-  const shuffleArray = ()=> {
+  const checkcharacter = (id)=> {
+    if(vistedCharacter.length > 0){
+      if(vistedCharacter.find(character=> character.id === id)){
+        console.log('You Have found it')
+        return true;
+      }
+    
+      return false;
+
+    }
+  }
+  const shuffleArray = (id)=> {
+    if(!checkcharacter(id)){
+        let findChar = characters.find((item)=> item.id === id)
+            setVistedCharacter(prev=> [
+        ...prev, findChar])
+    }
+       
     const shuffledArr = [...characters]
    for (let i = shuffledArr.length - 1; i > 0; i--) {
     // Pick a random index from 0 to i inclusive
@@ -56,20 +74,23 @@ function App() {
 
   return (
    <div className='Container'>
-  {
-    characters.slice(0, 6).map((character)=> {
-   
-      return (
-       <Card
-       id={character.id}
-       key={character.id}
-       image = {character.image}
-       imageUrl = {character.imageUrl}
-       shuffleArray= {shuffleArray}
-       />
-      )
-    })
-  }
+    <h1>Hello</h1>
+      <div className='allCharacters'>
+           {
+         characters.slice(0, 6).map((character)=> {
+             return (
+                <Card
+                 id={character.id}
+                 key={character.id}
+                image = {character.image}
+                  imageUrl = {character.imageUrl}
+                shuffleArray= {shuffleArray}
+               />
+        )
+          })
+         }
+       </div>
+ 
    </div>
   )
 
