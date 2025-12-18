@@ -14,7 +14,7 @@ const Card = ({
                 backgroundImage: `url(${imageUrl})`,
                 alt: {imageName},
                 backgroundSize: 'cover',
-                backgroundPosition: 'center'
+                backgroundPosition: 'center',
             }}
             onClick={()=> shuffleArray(id)}
         >

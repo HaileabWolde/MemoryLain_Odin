@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import Card from './components/Card';
 import AudioPlayerComponent from './components/Audio';
+import gotCharacters from './components/gotCharacters';
 function App() {
   const [characters, setCharacters] = useState([]);
   const [vistedCharacter, setVistedCharacter] = useState([]);
@@ -20,7 +21,9 @@ const [bestScore, setBestScore] = useState(0)
             throw new Error(`HTTP error! status: ${response.status}`)
           }
           const result  = await response.json()
-           setCharacters(result)
+          const sixteenCharacters = result.filter(character => gotCharacters.includes(character.fullName
+));
+           setCharacters(sixteenCharacters)
            setError(null)
       } 
       catch(err){
