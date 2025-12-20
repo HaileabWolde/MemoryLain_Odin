@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import Card from './components/Card';
 import AudioPlayerComponent from './components/Audio';
@@ -6,11 +6,12 @@ import gotCharacters from './components/gotCharacters';
 function App() {
   const [characters, setCharacters] = useState([]);
   const [vistedCharacter, setVistedCharacter] = useState([]);
+  const [shufflingArray, setShufflingArray] = useState([])
  const [error, setError] = useState(null)
 const [isLoading, setLoading] = useState(true);
-const [yourscore, setScore] = useState(0)
+const yourscore = useRef(0)
 const [bestScore, setBestScore] = useState(0)
- 
+const countCharacters = useRef(6)
  
   
   useEffect(()=>{
@@ -22,8 +23,9 @@ const [bestScore, setBestScore] = useState(0)
           }
           const result  = await response.json()
           const sixteenCharacters = result.filter(character => gotCharacters.includes(character.fullName
-));
+          ));
            setCharacters(sixteenCharacters)
+           setShufflingArray(sixteenCharacters)
            setError(null)
       } 
       catch(err){
@@ -38,14 +40,19 @@ const [bestScore, setBestScore] = useState(0)
     }
     getGameofThronesAPI()
   }, [])
+useEffect(() => {
+  if (yourscore.current > bestScore) {
+    setBestScore(yourscore.current);
+  }
+}, [yourscore.current, bestScore]); // Note: yourscore.current won't trigger, so better way:
+
 
   const checkcharacter = (id)=> {
     if(vistedCharacter.length > 0){
       if(vistedCharacter.find(character=> character.id === id)){
         alert('Game over')
         setVistedCharacter([])
-        setBestScore(prev => yourscore > prev ? yourscore : prev)
-        setScore(0);
+        yourscore.current = 0;
         return true;
       }
     
@@ -53,24 +60,51 @@ const [bestScore, setBestScore] = useState(0)
 
     }
   }
+
+  const checkWinning = (shuffledArr)=> {
+   if(yourscore.current === shuffledArr.length && shuffledArr.length > 0){
+               alert('Fuck You Have won')
+               setVistedCharacter([])
+               countCharacters.current >= 12 ? 
+               countCharacters.current = 6 : countCharacters.current = countCharacters.current + 2
+                yourscore.current = 0;
+       return true;
+   }  
+       
+     
+  }
+
   const shuffleArray = (id)=> {
-    if(!checkcharacter(id)){
+   
+    let shuffledArr = [...characters].slice(0, countCharacters.current)
+   
+     
+    
+    if(!checkcharacter(id, shuffledArr)){
+     
         let findChar = characters.find((item)=> item.id === id)
             setVistedCharacter(prev=> [
         ...prev, findChar])
-        setScore(prev => prev + 1)
-       
+        yourscore.current  = yourscore.current + 1; 
+        checkWinning(shuffledArr)
     }
-       
-    const shuffledArr = [...characters]
+    shuffledArr = [...characters].slice(0, countCharacters.current)
+    
    for (let i = shuffledArr.length - 1; i > 0; i--) {
     // Pick a random index from 0 to i inclusive
     const j = Math.floor(Math.random() * (i + 1)); 
     // Swap elements array[i] and array[j] using destructuring assignment
     [shuffledArr[i], shuffledArr[j]] = [shuffledArr[j], shuffledArr[i]];
   }
-  setCharacters(shuffledArr)
+ 
+  setShufflingArray(shuffledArr)
+  
   }
+
+
+
+
+
 
 
   if (isLoading) {
@@ -90,7 +124,7 @@ const [bestScore, setBestScore] = useState(0)
        />
           <div className="scores-container">  {/* New wrapper */}
                 <div className='yourBoard'>
-                      <p>Your Score: {yourscore}</p>
+                      <p>Your Score: {yourscore.current}</p>
                 </div>
                <div className='bestBoard'>
                     <p>Best Score: {bestScore}</p>
@@ -100,7 +134,7 @@ const [bestScore, setBestScore] = useState(0)
       </div>
       <div className='allCharacters'>
            {
-         characters.slice(0, 6).map((character)=> {
+         shufflingArray.slice(0, countCharacters.current).map((character)=> {
              return (
                 <Card
                  id={character.id}
