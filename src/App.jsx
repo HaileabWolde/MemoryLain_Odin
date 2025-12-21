@@ -1,4 +1,6 @@
 import './App.css'
+import { useState } from 'react';
+import Dialog from './components/dialog';
 import Card from './components/Card';
 import AudioPlayerComponent from './components/Audio';
 import ScoreBoard from './components/ScoreBoard';
@@ -15,6 +17,13 @@ function App() {
   cardCount
  } = useMemoryGame();
 
+const [modalState, setModalState] = useState({
+    show: true,
+    data: null, // This will hold your dynamic content (e.g., an object with a title and description)
+  });
+
+ 
+
   if (isLoading) {
    
     return <p>Loading data...</p>;
@@ -26,6 +35,13 @@ function App() {
 
   return (
    <div className='Container'>
+         <Dialog
+         modalState= {modalState}
+        onClose = {()=>  setModalState({
+          show: false,
+    data: null, // This will hold your dynamic content (e.g., an object with a title and description)
+        })}
+         />
       <div className='Board'>
            <AudioPlayerComponent
        src="./audio/GOT.mp3"
