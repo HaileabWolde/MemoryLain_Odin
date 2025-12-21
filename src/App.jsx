@@ -7,17 +7,8 @@ import ScoreBoard from './components/ScoreBoard';
 import useMemoryGame from './hooks/useMemoryGame';
 
 function App() {
- const {
-    isLoading,
-      error,
-  characters,
-  currentScore,
-   bestScore,
-  shuffleArray,
-  cardCount
- } = useMemoryGame();
 
-const [modalState, setModalState] = useState({
+  const [modalState, setModalState] = useState({
   show: true,
   data: (
     <div
@@ -131,6 +122,17 @@ const [modalState, setModalState] = useState({
     </div>
   ),
 });
+ const {
+    isLoading,
+      error,
+  characters,
+  currentScore,
+   bestScore,
+  shuffleArray,
+  cardCount
+ } = useMemoryGame(setModalState);
+
+
 
  
 
