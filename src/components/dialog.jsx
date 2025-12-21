@@ -1,25 +1,30 @@
+// components/dialog.jsx
 import { useEffect, useRef } from "react";
-import './dialog.css'
+import './dialog.css';
 
-const Dialog = ({  modalState,   onClose})=>{
+const Dialog = ({ modalState }) => {
+  const dialogRef = useRef(null);
 
-    const dialogRef = useRef(null);
-
-    useEffect(()=>{
-        if(modalState.show){
-            dialogRef?.current.showModal()
-             document.body.style.overflow = 'hidden'; // Prevents background scrolling
-        }
-         else {
-      dialogRef.current?.close(); // Closes the dialog
-      document.body.style.overflow = ''; // Restores scrolling
+  useEffect(() => {
+    if (modalState.show) {
+      dialogRef.current?.showModal();
+      document.body.style.overflow = 'hidden';
+    } else {
+      dialogRef.current?.close();
+      document.body.style.overflow = '';
     }
-    }, [modalState.show])
-    return (
-        <dialog ref={dialogRef}>
-                <p onClick={onClose}>Close button</p>
-            </dialog>
-    )
+  }, [modalState.show]);
 
-}
+  // If not shown, don't render anything
+  if (!modalState.show) {
+    return null;
+  }
+
+  return (
+    <dialog ref={dialogRef}>
+      {modalState.data}
+    </dialog>
+  );
+};
+
 export default Dialog;

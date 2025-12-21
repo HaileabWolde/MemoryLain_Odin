@@ -2,10 +2,16 @@ const ScoreBoard = ({currentScore, bestScore})=>{
 return (
      <div className="scores-container">  {/* New wrapper */}
                 <div className='yourBoard'>
-                      <p>Your Score: {currentScore}</p>
+                      <p style={{
+                         fontWeight: '600'
+                      }}>Your Score: {currentScore}</p>
                 </div>
                <div className='bestBoard'>
-                    <p>Best Score: {bestScore}</p>
+                    <p
+                    style={{
+                         fontWeight: '600'
+                    }}
+                    >Best Score: {bestScore}</p>
                </div>
            </div>
 )
