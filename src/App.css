@@ -20,6 +20,16 @@
   align-items: center;             /* Optional: vertically centers items if heights differ */
 
 }
+@media (max-width: 488px){
+  .Board{
+    width: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+
+}
 .scores-container{
   display: flex;
   gap: 20px;
