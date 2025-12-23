@@ -40,14 +40,8 @@ function App() {
         <em>but she may not choose the same face twice.</em>
       </p>
 
-      <p
-        style={{
-          fontSize: '1.8rem',
-          fontWeight: 'bold',
-          color: '#b22222', // Blood red for drama
-          textShadow: '0 0 10px rgba(178, 34, 34, 0.6)',
-          letterSpacing: '3px',
-        }}
+      <p className='text'
+      
       >
         Valar Morghulis
       </p>

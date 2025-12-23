@@ -1,10 +1,7 @@
 dialog{
     border: 2px solid #ccc;
     border-radius: 20px;
-    align-self: center;
-    justify-self: center;
-    height: 80%;
-    width: 40%;
+    padding: min(3rem, 20%);
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     cursor: pointer;
     display: flex;
@@ -34,7 +31,6 @@ dialog{
 }
 .dialogSection> h1 {
     font-size: 2rem;
-    margin: 0 0 24px;
     font-weight: 700;
     letter-spacing: 2px;
     text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
@@ -44,7 +40,7 @@ dialog{
     font-size: 1rem;
     margin: 0 0 30px;
     color: #c0c0c0;
-    font-weight: 500;
+    font-weight: 800;
 }
 .dialogSection> p {
     font-size: 1.2rem;
@@ -64,9 +60,45 @@ dialog{
     letter-spacing: 1px;
     text-transform: uppercase;
 }
+.dialogSection :nth-child(5){
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #b22222;
+    text-shadow: 0 0 10px rgba(178, 34, 34, 0.6);
+    letter-spacing: 3px;
+}
 @media (max-width: 860px) {
   dialog {
-    width: 80%;
+    margin-top: 20px;
+    width: 50%;
   }
-
+ .banner{
+    width: 50px;
+    height: 50px;
+ }
+ .banner> span{
+     font-size: 25px;
+ }
+ .dialogSection> h1 {
+    font-size: 1.8rem;
+   
+}
+.dialogSection> p {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+}
+.dialogSection :nth-child(5){
+    font-size: 1.5rem;
+   
+}
+.dialogSection> button{
+    background: linear-gradient(to bottom, #4a4a4a, #2a2a2a);
+    color: #d4af37;
+    border: 2px solid #8b8b8b;
+    border-radius: 8px;
+    padding: 14px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+   
+}
 }
