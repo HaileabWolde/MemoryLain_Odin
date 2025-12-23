@@ -1,5 +1,4 @@
 dialog{
-    padding: 20px;
     border: 2px solid #ccc;
     border-radius: 20px;
     align-self: center;
@@ -10,6 +9,64 @@ dialog{
     cursor: pointer;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+}
+.dialogSection{
+    text-align: center;
+    font-family: "Cinzel", "Garamond", serif;
+    color: #e8e0d0,
+}
+.banner{
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    background: #2a2a2a;
+    border-radius: 50%;
+    border: 4px solid #8b8b8b;
+    display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 0 20px rgba(139, 139, 139, 0.5),
+}
+.banner> span {
+    font-size: 50px;
+    opacity: 0.6;
+}
+.dialogSection> h1 {
+    font-size: 2rem;
+    margin: 0 0 24px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+    color: #d4af37;
+}
+.dialogSection> h2 {
+    font-size: 1rem;
+    margin: 0 0 30px;
+    color: #c0c0c0;
+    font-weight: 500;
+}
+.dialogSection> p {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+}
+.dialogSection> button{
+    background: linear-gradient(to bottom, #4a4a4a, #2a2a2a);
+    color: #d4af37;
+    border: 2px solid #8b8b8b;
+    border-radius: 8px;
+    padding: 14px 32px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.6);
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+@media (max-width: 860px) {
+  dialog {
+    width: 80%;
+  }
+
 }
