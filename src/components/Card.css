@@ -6,3 +6,9 @@
   width: 30%;
   min-height: 250px;
 }
+@media (max-width: 860px) {
+  .card {
+    width: 40%;
+    aspect-ratio: 1/1;
+  }
+}
