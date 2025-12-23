@@ -69,7 +69,8 @@ dialog{
 }
 @media (max-width: 860px) {
   dialog {
-    margin-top: 20px;
+    margin-top: auto;
+    margin-bottom: auto;
     width: 50%;
   }
  .banner{
