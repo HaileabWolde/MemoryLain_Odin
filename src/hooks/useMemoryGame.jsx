@@ -56,30 +56,11 @@ export default function useMemoryGame(setModalState) {
   show: true,
   data: (
     <div
-      style={{
-        textAlign: 'center',
-        padding: '40px 20px',
-        maxWidth: '550px',
-        margin: '0 auto',
-        fontFamily: '"Cinzel", "Garamond", serif',
-        color: '#e8e0d0',
-      }}
+     className='failureContainer'
     >
       {/* Broken mask / fallen face emblem */}
       <div
-        style={{
-          width: '130px',
-          height: '130px',
-          margin: '0 auto 30px',
-          background: '#1a1a1a',
-          borderRadius: '50%',
-          border: '6px solid #4a0000',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: '0 0 30px rgba(178, 34, 34, 0.6), inset 0 0 20px rgba(0,0,0,0.9)',
-          position: 'relative',
-        }}
+       className='failurediv'
       >
         <span style={{ fontSize: '80px', opacity: 0.7 }}>💀</span>
         {/* Cracks overlay effect */}
@@ -95,23 +76,10 @@ export default function useMemoryGame(setModalState) {
         />
       </div>
 
-      <h1
-        style={{
-          fontSize: '3.2rem',
-          margin: '0 0 20px',
-          fontWeight: '700',
-          letterSpacing: '3px',
-          color: '#b22222',
-          textShadow: '0 0 15px rgba(178, 34, 34, 0.8), 2px 2px 10px rgba(0,0,0,0.9)',
-        }}
-      >
-        Failure
-      </h1>
-
       <h2
         style={{
           fontSize: '1.8rem',
-          margin: '0 0 35px',
+         
           color: '#a0a0a0',
           fontStyle: 'italic',
         }}
@@ -122,7 +90,6 @@ export default function useMemoryGame(setModalState) {
         style={{
           fontSize: '2rem',
           fontWeight: 'bold',
-          margin: '45px 0 40px',
           color: '#8b0000',
           letterSpacing: '2px',
           textShadow: '0 0 12px rgba(139, 0, 0, 0.7)',
@@ -132,21 +99,8 @@ export default function useMemoryGame(setModalState) {
       </p>
 
       <button
+      className='failureButton'
         onClick={() => setModalState({ show: false, data: null })}
-        style={{
-          background: 'linear-gradient(to bottom, #4a0000, #2a0000)',
-          color: '#e0e0e0',
-          border: '2px solid #8b0000',
-          borderRadius: '10px',
-          padding: '16px 40px',
-          fontSize: '1.4rem',
-          fontWeight: 'bold',
-          cursor: 'pointer',
-          boxShadow: '0 8px 25px rgba(178, 34, 34, 0.5)',
-          transition: 'all 0.3s ease',
-          letterSpacing: '1.5px',
-          textTransform: 'uppercase',
-        }}
         onMouseOver={(e) => {
           e.currentTarget.style.background = 'linear-gradient(to bottom, #8b0000, #4a0000)';
           e.currentTarget.style.transform = 'translateY(-3px)';
@@ -178,7 +132,7 @@ export default function useMemoryGame(setModalState) {
                  setModalState({
                     show: true,
                   data: (
-              <div
+              <div className=''
                  style={{
                        textAlign: 'center',
                        padding: '40px 20px',
@@ -206,11 +160,7 @@ export default function useMemoryGame(setModalState) {
         <span style={{ fontSize: '70px' }}>⚔️</span> {/* Crossed swords for victory */}
       </div>
       <h2
-        style={{
-          fontSize: '1.9rem',
-          color: '#c0c0c0',
-          fontStyle: 'italic',
-        }}
+        
       >
         {
           cardCount.current < 12 &&  `A girl has no name... but she remembers all faces.` 
@@ -235,11 +185,7 @@ s
 
       {/* Dynamic level message */}
       <p
-        style={{
-          fontSize: '1.3rem',
-          color: '#a0a0a0',
-          marginBottom: '30px',
-        }}
+      className='pSpan'
       >
         {cardCount.current >= 12 
           ? "Finally A girl is no One."
@@ -248,22 +194,9 @@ s
       </p>
 
       <button
+      className='continueButton'
         onClick={() => setModalState({ show: false, data: null })}
-        style={{
-          background: 'linear-gradient(to bottom, #d4af37, #b8860b)',
-          color: '#1a1a1a',
-          border: 'none',
-          borderRadius: '10px',
-          padding: '16px 40px',
-          fontSize: '1.5rem',
-          fontWeight: 'bold',
-          cursor: 'pointer',
-          boxShadow: '0 8px 25px rgba(212, 175, 55, 0.5)',
-          transition: 'all 0.3s ease',
-          letterSpacing: '2px',
-          textTransform: 'uppercase',
-          minWidth: '220px',
-        }}
+      
         onMouseOver={(e) => {
           e.currentTarget.style.transform = 'translateY(-4px)';
           e.currentTarget.style.boxShadow = '0 15px 35px rgba(212, 175, 55, 0.7)';
@@ -273,7 +206,9 @@ s
           e.currentTarget.style.boxShadow = '0 8px 25px rgba(212, 175, 55, 0.5)';
         }}
       >
-        Continue the Path
+        {cardCount.current >= 12 ?  'Restart The Game' : 'Continue the Path' 
+
+        }
       </button>
     </div>
   ),
